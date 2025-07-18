@@ -66,7 +66,7 @@ def launch_streamlit():
     password = st.text_input("Mot de passe Instagram", type="password")
     hashtag = st.text_input("Hashtag (sans #)", value="nature")
     post_limit = st.number_input("Nombre de publications à télécharger", value=10, min_value=1)
-    output_folder = st.text_input("Dossier de sauvegarde", value=str(Path.cwd() / "telechargements"))
+    output_folder = st.text_input("Dossier de sauvegarde")
 
     if st.button("Lancer le téléchargement"):
         if not username or not password or not hashtag:
@@ -150,7 +150,8 @@ def launch_tkinter():
 
 if __name__ == "__main__":
     import sys
-    if "streamlit" in sys.argv[0].lower():
+    # Prevent Tkinter from launching when running under Streamlit
+    if any("streamlit" in arg.lower() for arg in sys.argv) or "streamlit" in sys.modules:
         launch_streamlit()
     else:
         launch_tkinter()

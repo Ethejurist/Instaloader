@@ -1,0 +1,8 @@
+.venv
+.idea
+.env
+session-*
+*.log
+/#hairstylistantwerp
+/venv
+/telechargements
